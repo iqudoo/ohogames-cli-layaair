@@ -1,0 +1,23 @@
+{
+  "name": "#project-name#",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"npm run watch-bin\" \"npm run watch-src\"",
+    "compile": "layaair-cmd compile",
+    "build": "ohogames-cli-layaair build --platform h5 --input ./bin --output ./release/h5 --force --min",
+    "watch-src": "onchange ./src/** -v -- npm run compile",
+    "watch-bin": "onchange ./bin/** -v -- npm run build"
+  },
+  "devDependencies": {
+    "onchange": "^4.0.0",
+    "concurrently": "^3.6.1",
+    "ohogames-cli-layaair": "^#ohogames-cli-version#",
+    "ohogames-base-layaair": "^#ohogames-base-version#",
+    "layaair-cmd": "^2.2.6",
+    "typescript": "^2.6.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
