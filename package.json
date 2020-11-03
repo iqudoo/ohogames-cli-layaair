@@ -8,7 +8,7 @@
     "test-build-h5": "node ./cli/build.js build --platform h5 --output ./build/ --input ./test/bin/ --force --min --mergeunpack --plugins pngzip",
     "test": "echo 'no tests'",
     "preversion": "npm test",
-    "version": "git add -A *",
+    "version": "git add -A cli && git add -A templates",
     "postversion": "echo 'no postversion'"
   },
   "author": "",
