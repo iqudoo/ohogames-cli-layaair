@@ -1,12 +1,9 @@
-function taskBefore(gulp, params, callback) {
-    callback();
-}
-
-function taskMain(gulp, params, callback) {
-    callback();
+function task(params) {
+    return function (done) {
+        done();
+    }
 }
 
 module.exports = {
-    taskBefore,
-    taskMain
+    task
 }

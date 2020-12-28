@@ -15,8 +15,9 @@ const Mergejs = require('./tasks/_5mergejs');
 const Mergecss = require('./tasks/_4mergecss');
 const Injection = require('./tasks/_6injection');
 const Templatetask = require('./tasks/_7templatetask');
-const Plugins = require('./tasks/_8plugins');
-const Zipe = require('./tasks/_9zip');
+const Manifest = require('./tasks/_8manifest');
+const Plugins = require('./tasks/_9plugins');
+const Zipe = require('./tasks/_10zip');
 const program = minimist(process.argv.slice(2), []);
 
 function init() {
@@ -169,9 +170,9 @@ function running() {
 
     gulp.task('injectJs', Injection.injectTask(program));
 
-    gulp.task('templateTaskBefore', Templatetask.templateTaskBefore(program));
+    gulp.task('templateTask', Templatetask.templateTask(program));
 
-    gulp.task('templateTaskAfter', Templatetask.templateTaskAfter(program));
+    gulp.task('manifestTask', Manifest.manifestTask(program));
 
     gulp.task('pluginsTask', Plugins.pluginTask(program));
 
@@ -184,12 +185,12 @@ function running() {
         } else {
             tasks.push('clean');
             tasks.push('resources');
-            tasks.push('templateTaskBefore');
             tasks.push('template');
             tasks.push('mergeCss');
             tasks.push('mergeJs');
             tasks.push('injectJs');
-            tasks.push('templateTaskAfter');
+            tasks.push('templateTask');
+            tasks.push('manifestTask');
             if (program.plugins) {
                 tasks.push('pluginsTask');
             }
