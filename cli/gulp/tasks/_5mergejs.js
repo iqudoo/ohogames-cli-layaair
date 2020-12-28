@@ -59,7 +59,7 @@ const mergeJs = (htmlFile, outputDir, jsFile, uglify, babel, replaces = [], type
             });
             return task.pipe(gulp.dest(outputDir));
         } else {
-            FileUtils.createFileSync(path.join(outputDir, jsFile), "console.log(\"empty file: " + jsFile + "\")");
+            FileUtils.writeFileSync(path.join(outputDir, jsFile), "console.log(\"empty file: " + jsFile + "\")");
             done();
         }
     }

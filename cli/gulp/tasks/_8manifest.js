@@ -11,10 +11,9 @@ function manifestTask(program) {
         manifestFiles.push(...HtmlUtils.readLocalFiles({ file: htmlFile, selector: 'script', attribute: 'src' }));
         manifestFiles.push(...HtmlUtils.readRemoteFiles({ file: htmlFile, selector: 'link', attribute: 'href', filter: { rel: 'stylesheet' } }));
         manifestFiles.push(...HtmlUtils.readLocalFiles({ file: htmlFile, selector: 'link', attribute: 'href', filter: { rel: 'stylesheet' } }));
-        let data = manifestFiles.map((filePath) => {
+        FileUtils.writeFileSync(manifestFile, JSON.stringify(manifestFiles.map((filePath) => {
             return path.relative(program.output, filePath);
-        })
-        FileUtils.createFileSync(manifestFile, JSON.stringify(data))
+        }), null, 2))
         done();
     };
 }

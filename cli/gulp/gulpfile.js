@@ -174,9 +174,9 @@ function running() {
 
     gulp.task('injectJs', Injection.injectTask(program));
 
-    gulp.task('templateTask', Templatetask.templateTask(program));
+    gulp.task('manifestJson', Manifest.manifestTask(program));
 
-    gulp.task('manifestTask', Manifest.manifestTask(program));
+    gulp.task('templateTask', Templatetask.templateTask(program));
 
     gulp.task('pluginsTask', Plugins.pluginTask(program));
 
@@ -193,8 +193,8 @@ function running() {
             tasks.push('mergeCss');
             tasks.push('mergeJs');
             tasks.push('injectJs');
+            tasks.push('manifestJson');
             tasks.push('templateTask');
-            tasks.push('manifestTask');
             if (program.plugins) {
                 tasks.push('pluginsTask');
             }

@@ -56,14 +56,19 @@ function deleteFolderSync(path) {
     }
 }
 
-function createFileSync(file, content) {
-    createFolderSync(file);
-    fs.createWriteStream(file);
-    fs.writeFileSync(file, content);
+function writeFileSync(file, content) {
+    try {
+        createFolderSync(file);
+        fs.writeFileSync(file, content);
+    } catch (error) {
+    }
 }
 
 function existsSync(file) {
-    return fs.existsSync(file);
+    try {
+        return fs.existsSync(file);
+    } catch (error) {
+    }
 }
 
 function readJson(file) {
@@ -78,7 +83,7 @@ function readJson(file) {
 
 module.exports = {
     mkdirsSync,
-    createFileSync,
+    writeFileSync,
     createFolderSync,
     deleteFolderSync,
     existsSync,
