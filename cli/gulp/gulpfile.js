@@ -3,8 +3,6 @@ const chalk = require('chalk');
 const path = require('path');
 const gulp = require('gulp');
 const minimist = require('minimist');
-
-const Fst = require('../utils/fst');
 const File = require('./utils/file');
 const Html = require('./utils/html');
 const Empty = require('./tasks/empty');
@@ -19,6 +17,11 @@ const Manifest = require('./tasks/_8manifest');
 const Plugins = require('./tasks/_9plugins');
 const Zipe = require('./tasks/_10zip');
 const program = minimist(process.argv.slice(2), []);
+
+let confPath = path.join((program.bincwd || '.'), program["build-config"] || './ohogames-build.json');
+if (File.existsSync(confPath)) {
+    Object.assign(program, require(confPath))
+}
 
 function init() {
 
@@ -62,15 +65,15 @@ function init() {
     let localTplDir = path.join((program.bincwd || '.'), `ohogames/templates/${program.platform}`);
     let npmTplDir = path.join((program.bincwd || '.'), `node_modules/ohogames-${program.platform}-layaair-template`);
     let innerTplDir = path.join((program.libcwd || '.'), `templates/build/${program.platform}`);
-    if (Fst.existsSync(localTplDir)) {
+    if (File.existsSync(localTplDir)) {
         program.templateDir = localTplDir;
         return true;
     }
-    if (Fst.existsSync(npmTplDir)) {
+    if (File.existsSync(npmTplDir)) {
         program.templateDir = npmTplDir;
         return true;
     }
-    if (Fst.existsSync(innerTplDir)) {
+    if (File.existsSync(innerTplDir)) {
         program.templateDir = innerTplDir;
         return true;
     }
@@ -134,6 +137,7 @@ function running() {
         console.log("");
         console.log("");
         console.log("Usage: ohogames-cli-layaair build [options]");
+        console.log("  --build-config     build config file, def: ohogames-build.json");
         console.log("  --input            input dir");
         console.log("  --output           output dir");
         console.log("  --projectname      [Optional] project name");

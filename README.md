@@ -12,6 +12,7 @@
 ```
 > layaair-tape
   Usage: ohogames-cli-layaair build [options]
+    --build-config     build config file, def: ohogames-build.json
     --input            input dir
     --output           output dir
     --projectname      [Optional] project name

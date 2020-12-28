@@ -2,7 +2,7 @@
 const path = require('path');
 const gulp = require('gulp');
 const chalk = require('chalk');
-const fst = require('../../utils/fst');
+const file = require('../utils/file');
 const { emptyTask } = require('./empty');
 
 function pluginTask(program) {
@@ -14,14 +14,15 @@ function pluginTask(program) {
         plugins.map(pluginName => {
             let localPluginFile = path.join((program.bincwd || '.'), `.ohogames-cli/plugins/${pluginName}.js`);
             let pluginFile = path.join((program.bincwd || '.'), `node_modules/ohogames-cli-layaair-${pluginName}/plugin.js`);
-            if (fst.existsSync(localPluginFile)) {
+            if (file.existsSync(localPluginFile)) {
                 return { pluginName, pluginFile: localPluginFile };
             }
-            if (fst.existsSync(pluginFile)) {
+            if (file.existsSync(pluginFile)) {
                 return { pluginName, pluginFile };
             }
+            let pluginRepo = `ohogames-cli-layaair-${pluginName}`;
             console.log("");
-            console.log("plugin not found : " + chalk.yellow(pluginName));
+            console.log(`plugin not found : ${chalk.yellow(pluginRepo)}, you can \"${chalk.yellow(`npm install ${pluginRepo}`)}\"`);
             console.log("");
             return {};
         }).forEach(({ pluginName, pluginFile }) => {
