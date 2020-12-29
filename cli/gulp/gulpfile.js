@@ -149,6 +149,7 @@ function running() {
         console.log("  --plugins          [Optional] use plugin name list");
         console.log("  --injection        [Optional] injection js file");
         console.log("  --injection-append [Optional] injection append js file");
+        console.log("  --mainfest-name    [Optional] mainfest.json file name, def: asset-mainfest.json");
         console.log("  --imgbase64        [Optional] html image base64");
         console.log("  --zip              [Optional] [bool] gen zip");
         console.log("  --zip-name         [Optional] [bool] zip name, def:build.zip");
