@@ -26,6 +26,7 @@
     --injection        [Optional] injection js file
     --injection-append [Optional] injection append js file
     --res-copy         [Optional] copy res RegEx, def: res/**/*
+    --res-exclude      [Optional] exclude res RegEx
     --mainfest-name    [Optional] mainfest.json file name, def: asset-mainfest.json
     --imgbase64        [Optional] html image base64
     --zip              [Optional] [bool] zip build.zip

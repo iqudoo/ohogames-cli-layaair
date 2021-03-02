@@ -150,6 +150,7 @@ function running() {
         console.log("  --injection        [Optional] injection js file");
         console.log("  --injection-append [Optional] injection append js file");
         console.log("  --res-copy         [Optional] copy res RegEx, def: res/**/*");
+        console.log("  --res-exclude      [Optional] exclude res RegEx");
         console.log("  --mainfest-name    [Optional] mainfest.json file name, def: asset-mainfest.json");
         console.log("  --imgbase64        [Optional] html image base64");
         console.log("  --zip              [Optional] [bool] gen zip");

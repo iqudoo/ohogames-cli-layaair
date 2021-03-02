@@ -22,7 +22,12 @@ function resourcesTask(program) {
         })).map(item => {
             return inputPath + "/**/" + item;
         });
-        return gulp.src([inputPath + "/**/*", "!" + inputPath + "/**/*.js", ...resInclude.map(item => "!" + item)]).pipe(gulp.dest(outputDir))
+        let resExclude = unique(`${program["res-exclude"] || ""}`.split(",").filter(item => {
+            return !!item;
+        })).map(item => {
+            return "!" + inputPath + "/**/" + item;
+        });
+        return gulp.src([inputPath + "/**/*", "!" + inputPath + "/**/*.js", ...resExclude, ...resInclude.map(item => "!" + item)]).pipe(gulp.dest(outputDir))
             .pipe(gulp.src(resInclude))
             .pipe(gulp.dest(outputDir))
     }

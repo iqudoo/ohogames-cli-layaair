@@ -5,7 +5,7 @@
   "description": "ohogames cli of layaair",
   "scripts": {
     "test-create": "node ./cli/build.js create test",
-    "test-build-h5": "node ./cli/build.js build --platform h5 --output ./build/ --input ./test/bin/ --force --mergeunpack --plugins rev",
+    "test-build-h5": "node ./cli/build.js build --platform h5 --output ./build/ --input ./test/bin/ --force --mergeunpack --plugins obfuscate",
     "test": "echo 'no tests'",
     "preversion": "npm test",
     "version": "git add -A cli && git add -A templates",
@@ -42,6 +42,7 @@
     "download": "^8.0.0",
     "exec-sh": "0.3.2",
     "gulp": "4.0.0",
+    "gulp-obfuscate": "0.2.9",
     "gulp-cheerio": "0.6.3",
     "gulp-concat": "2.6.1",
     "gulp-html-img64": "1.0.8",
