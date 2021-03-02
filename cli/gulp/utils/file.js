@@ -56,6 +56,24 @@ function deleteFolderSync(path) {
     }
 }
 
+function deleteEmptySync(path) {
+    try {
+        var files = [];
+        if (fs.existsSync(path) && fs.statSync(path).isDirectory()) {
+            files = fs.readdirSync(path);
+            files.forEach(function (file, index) {
+                var curPath = path + "/" + file;
+                if (fs.statSync(curPath).isDirectory()) {
+                    // recurse
+                    deleteEmptySync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+        }
+    } catch (error) {
+    }
+}
+
 function writeFileSync(file, content) {
     try {
         createFolderSync(file);
@@ -86,6 +104,7 @@ module.exports = {
     writeFileSync,
     createFolderSync,
     deleteFolderSync,
+    deleteEmptySync,
     existsSync,
     deleteFileSync,
     readJson,

@@ -16,6 +16,7 @@ const Templatetask = require('./tasks/_7templatetask');
 const Manifest = require('./tasks/_8manifest');
 const Plugins = require('./tasks/_9plugins');
 const Zipe = require('./tasks/_10zip');
+const Emptydir = require('./tasks/_11emptydir');
 const program = minimist(process.argv.slice(2), []);
 
 let confPath = path.join((program.bincwd || '.'), program["build-config"] || './ohogames-build.json');
@@ -185,6 +186,8 @@ function running() {
 
     gulp.task('zip', Zipe.zipTask(program))
 
+    gulp.task('emptydir', Emptydir.emptydirTask(program))
+
     gulp.task('build', function (done) {
         let tasks = [];
         if (program.x) {
@@ -204,6 +207,7 @@ function running() {
             if (program.zip) {
                 tasks.push('zip');
             }
+            tasks.push('emptydir');
         }
         return gulp.series(tasks)((error) => {
             done();
