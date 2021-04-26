@@ -144,6 +144,7 @@ function running() {
         console.log("  --projectname      [Optional] project name");
         console.log("  --platform         [Optional] project template name");
         console.log("  --indexfile        [Optional] index.html file def: index.html");
+        console.log("  --bgcolor          [Optional] html body bg color");
         console.log("  --cssfile          [Optional] cssfile def: style.css");
         console.log("  --jsfile           [Optional] jsfile def: code.js");
         console.log("  --jschunk          [Optional] jschunk def: code.chunk.js");

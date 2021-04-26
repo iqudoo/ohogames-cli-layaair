@@ -12,6 +12,7 @@ const injectTask = (program) => {
     let jsFile = program.jsfile;
     let jsChunk = program.jschunk;
     let jsUnpack = program.jsunpack;
+    let bgColor = program.bgcolor;
     let mergeUnpack = program.mergeunpack;
     let injectionJs = program.injection;
     let appendInjectionJs = program['injection-append'];
@@ -20,6 +21,11 @@ const injectTask = (program) => {
         let indexHtml = path.join(outputDir, htmlFile);
         if (FileUtils.existsSync(indexHtml) && force) {
             let pipe = gulp.src(indexHtml);
+            if (bgColor) {
+                pipe = pipe.pipe(gulpCheerio(function ($) {
+                    $('body').css("background-color", "#" + bgColor);
+                }))
+            }
             if (FileUtils.existsSync(path.join(outputDir, cssFile))) {
                 pipe = pipe.pipe(gulpCheerio(function ($) {
                     $('body').append('<link href="' + cssFile + '" rel="stylesheet">');
