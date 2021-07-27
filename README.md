@@ -18,8 +18,8 @@
     --projectname      [Optional] project name
     --platform         [Optional] project template name
     --indexfile        [Optional] index.html file def: index.html
+    --cssfile          [Optional] cssfile def: index.css
     --bgcolor          [Optional] html body bg color
-    --cssfile          [Optional] cssfile def: style.css
     --jsfile           [Optional] jsfile def: code.js
     --jschunk          [Optional] jschunk def: code.chunk.js
     --jsunpack         [Optional] jsunpack def: code.unpack.js

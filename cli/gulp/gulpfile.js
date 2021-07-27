@@ -31,7 +31,7 @@ function init() {
     }
 
     if (!program.cssfile) {
-        program.cssfile = 'style.css';
+        program.cssfile = 'index.css';
     }
 
     if (!program.indexfile) {
@@ -145,7 +145,7 @@ function running() {
         console.log("  --platform         [Optional] project template name");
         console.log("  --indexfile        [Optional] index.html file def: index.html");
         console.log("  --bgcolor          [Optional] html body bg color");
-        console.log("  --cssfile          [Optional] cssfile def: style.css");
+        console.log("  --cssfile          [Optional] cssfile def: index.css");
         console.log("  --jsfile           [Optional] jsfile def: code.js");
         console.log("  --jschunk          [Optional] jschunk def: code.chunk.js");
         console.log("  --plugins          [Optional] use plugin name list");
