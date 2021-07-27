@@ -1,6 +1,6 @@
 {
   "name": "ohogames-cli-layaair",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "baseVersion": "1.0.12",
   "description": "ohogames cli of layaair",
   "scripts": {
