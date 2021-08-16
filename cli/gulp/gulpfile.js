@@ -24,7 +24,7 @@ if (File.existsSync(confPath)) {
     Object.assign(program, require(confPath))
 }
 
-if (program.outputVersion) {
+if (program.outputVersion && !program.version) {
     let packageJson = path.join((program.bincwd || '.'), './package.json')
     if (File.existsSync(packageJson)) {
         Object.assign(program, {
@@ -147,27 +147,28 @@ function running() {
         console.log("");
         console.log("");
         console.log("Usage: ohogames-cli-layaair build [options]");
-        console.log("  --build-config     build config file, def: ohogames-build.json");
+        console.log("  --build-config     build config file, default: ohogames-build.json");
         console.log("  --input            input dir");
         console.log("  --output           output dir");
         console.log("  --outputVersion    [Optional] output dir with version");
+        console.log("  --version          [Optional] version default from package.json");
         console.log("  --projectname      [Optional] project name");
         console.log("  --platform         [Optional] project template name");
-        console.log("  --indexfile        [Optional] index.html file def: index.html");
+        console.log("  --indexfile        [Optional] index.html file default: index.html");
         console.log("  --bgcolor          [Optional] html body bg color");
-        console.log("  --cssfile          [Optional] cssfile def: index.css");
-        console.log("  --jsfile           [Optional] jsfile def: code.js");
-        console.log("  --jschunk          [Optional] jschunk def: code.chunk.js");
+        console.log("  --cssfile          [Optional] cssfile default: index.css");
+        console.log("  --jsfile           [Optional] jsfile default: code.js");
+        console.log("  --jschunk          [Optional] jschunk default: code.chunk.js");
         console.log("  --plugins          [Optional] use plugin name list");
         console.log("  --injection        [Optional] injection js file");
         console.log("  --injection-append [Optional] injection append js file");
-        console.log("  --res-copy         [Optional] copy res RegEx, def: res/**/*");
+        console.log("  --res-copy         [Optional] copy res RegEx, default: res/**/*");
         console.log("  --res-exclude      [Optional] exclude res RegEx");
-        console.log("  --mainfest-name    [Optional] mainfest.json file name, def: asset-mainfest.json");
+        console.log("  --mainfest-name    [Optional] mainfest.json file name, default: asset-mainfest.json");
         console.log("  --imgbase64        [Optional] html image base64");
-        console.log("  --zip              [Optional] [bool] gen zip");
-        console.log("  --zip-name         [Optional] [bool] zip name, def:build.zip");
-        console.log("  --min              [Optional] [bool] uglify js");
+        console.log("  --zip              [Optional] [bool] gen zip");// TODO: 改成插件
+        console.log("  --zip-name         [Optional] [bool] zip name, default:build.zip");
+        console.log("  --min              [Optional] [bool] uglify js"); // TODO: 改成插件
         console.log("  --minchunk         [Optional] [bool] uglify chunk js");
         console.log("  --mergeunpack      [Optional] [bool] merge unpack js");
         console.log("  --force            [Optional] [bool] ignore template lock file");
