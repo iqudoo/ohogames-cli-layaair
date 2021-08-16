@@ -24,12 +24,12 @@ if (File.existsSync(confPath)) {
     Object.assign(program, require(confPath))
 }
 
-if (program.outputVersion && !program.version) {
+if (!program.version) {
     let packageJson = path.join((program.bincwd || '.'), './package.json')
     if (File.existsSync(packageJson)) {
-        Object.assign(program, {
-            version: require(packageJson).version || '1.0.0'
-        })
+        program.version = require(packageJson).version || '1.0.0';
+    } else {
+        program.version = "1.0.0";
     }
 }
 
@@ -64,7 +64,11 @@ function init() {
     }
 
     if (program.output) {
-        program.output = path.join((program.bincwd || '.') + "/" + program.output + "/" + program.version);
+        if (program.outputVersion) {
+            program.output = path.join((program.bincwd || '.') + "/" + program.output + "/" + program.version);
+        } else {
+            program.output = path.join((program.bincwd || '.') + "/" + program.output);
+        }
     }
 
     if (!program.x) {
@@ -106,6 +110,7 @@ function config(htmlFile) {
     replaceList.push(['${codeJs}', program.jsfile]);
     replaceList.push(['${chunkJs}', program.jschunk]);
     replaceList.push(['${unpackJs}', program.jsunpack]);
+    replaceList.push(['${projectVersion}', program.version]);
     replaceList.push(['${projectName}', projectname]);
     program.replaceList = replaceList;
 }
