@@ -10,11 +10,12 @@
 
 #### build
 ```
-> layaair-tape
+> ohogames-cli-layaair
   Usage: ohogames-cli-layaair build [options]
     --build-config     build config file, def: ohogames-build.json
     --input            input dir
     --output           output dir
+    --outputVersion    [Optional] output dir with version
     --projectname      [Optional] project name
     --platform         [Optional] project template name
     --indexfile        [Optional] index.html file def: index.html

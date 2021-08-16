@@ -24,6 +24,15 @@ if (File.existsSync(confPath)) {
     Object.assign(program, require(confPath))
 }
 
+if (program.outputVersion) {
+    let packageJson = path.join((program.bincwd || '.'), './package.json')
+    if (File.existsSync(packageJson)) {
+        Object.assign(program, {
+            version: require(packageJson).version || '1.0.0'
+        })
+    }
+}
+
 function init() {
 
     if (!program.platform) {
@@ -55,7 +64,7 @@ function init() {
     }
 
     if (program.output) {
-        program.output = path.join((program.bincwd || '.') + "/" + program.output);
+        program.output = path.join((program.bincwd || '.') + "/" + program.output + "/" + program.version);
     }
 
     if (!program.x) {
@@ -141,6 +150,7 @@ function running() {
         console.log("  --build-config     build config file, def: ohogames-build.json");
         console.log("  --input            input dir");
         console.log("  --output           output dir");
+        console.log("  --outputVersion    [Optional] output dir with version");
         console.log("  --projectname      [Optional] project name");
         console.log("  --platform         [Optional] project template name");
         console.log("  --indexfile        [Optional] index.html file def: index.html");
