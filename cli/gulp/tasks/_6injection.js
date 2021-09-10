@@ -28,7 +28,7 @@ const injectTask = (program) => {
             }
             if (FileUtils.existsSync(path.join(outputDir, cssFile))) {
                 pipe = pipe.pipe(gulpCheerio(function ($) {
-                    $('body').append('<link href="' + cssFile + '" rel="stylesheet">');
+                    $('head').append('<link href="' + cssFile + '" rel="prefetch stylesheet">');
                 }))
             }
             if (FileUtils.existsSync(path.join(outputDir, jsFile))) {
