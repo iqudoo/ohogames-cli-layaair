@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const file = require('../utils/file');
+const { emptyTask } = require('./empty');
 
 function templateTask(program) {
     let customTaskJs = `${program.templateDir}/task.js`;
